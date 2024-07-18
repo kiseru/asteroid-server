@@ -3,6 +3,7 @@ package com.kiseru.asteroids.server.service.impl
 import com.kiseru.asteroids.server.game.GameService
 import com.kiseru.asteroids.server.model.Room
 import com.kiseru.asteroids.server.service.RoomService
+import com.kiseru.asteroids.server.service.ScreenService
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.yield
@@ -13,6 +14,7 @@ import java.util.*
 @Service
 class RoomServiceImpl(
     private val gameService: GameService,
+    private val screenService: ScreenService,
 ) : RoomService {
 
     private val roomStorage = mutableMapOf<UUID, Room>()
@@ -51,7 +53,7 @@ class RoomServiceImpl(
 
     override fun showAllGameFields() {
         for (room in roomStorage.values) {
-            room.game.screen.display()
+            screenService.display(room.game.screen)
         }
     }
 

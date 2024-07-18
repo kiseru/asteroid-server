@@ -4,7 +4,7 @@ import java.util.*
 
 class Screen(val width: Int, val height: Int) {
 
-    private val mainMatrix: Array<Array<String>> = Array(height + 2) { Array(width + 2) { "." } }
+    val mainMatrix: Array<Array<String>> = Array(height + 2) { Array(width + 2) { "." } }
 
     init {
         generateClearScreen()
@@ -25,22 +25,6 @@ class Screen(val width: Int, val height: Int) {
      */
     fun update() {
         generateClearScreen()
-    }
-
-    /**
-     * Отображает экран.
-     */
-    fun display() {
-        val result = StringBuilder("")
-        for (i in 1 until height + 1) {
-            for (j in 1 until width + 1) {
-                result.append(mainMatrix[i][j])
-                result.append("\t")
-            }
-            result.append("\n")
-        }
-
-        println(result.toString())
     }
 
     private fun generateClearScreen() {
